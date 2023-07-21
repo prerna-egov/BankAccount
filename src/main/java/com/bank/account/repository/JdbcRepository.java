@@ -28,10 +28,10 @@ public class JdbcRepository implements AccountRepository, UserRepository, Transa
     }
 
     @Override
-    public Account getAccount(Account account) {
+    public Account getAccountByAccountNumber(Amount amount) {
         try {
             Account account1 = jdbcTemplate.queryForObject("SELECT * FROM accounts WHERE accountNumber = ?",
-                    BeanPropertyRowMapper.newInstance(Account.class), account.getAccountNumber());
+                    BeanPropertyRowMapper.newInstance(Account.class), amount.getAccountNumber());
             return account1;
         } catch (IncorrectResultSizeDataAccessException e) {
             return null;
